@@ -13,7 +13,7 @@ It is using a tabbed interface design to handle two key functions that were impl
 First function is the language detection of a given text. (Refer to sample screenshot: Detect_Sample.png)
 ![Detect_Sample.png](https://github.com/teohuei/RDAI_Assignment/blob/main/Detect_Sample.png?raw=true)
 Second function is to translate the text to English. (Refer to sample screenshot: Translate_Sample.png)
-![Translate_Sample.png](https://github.com/teohuei/RDAI_Assignment/blob/main/Translate_Sample.png?raw=true)
+![Translate_Sample.png](https://github.com/teohuei/RDAI_Assignment/blob/main/Translate_Sample.PNG?raw=true)
 
 This demo web application can be started by running "python app.py" in the folder where app.py reside and access the application at http://127.0.0.1:7860.
 
