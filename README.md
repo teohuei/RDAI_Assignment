@@ -26,7 +26,7 @@ It serves 4 different APIs.
 3) Supported Languages endpoint: It returns a list of languages that can be translated by the service. (Note: The list of support languages can be edited in the env file before building the docker image.)
 4) Translate endpoint: It will translate the given text and selected original language to English text. It is using facebook/m2m100_418M model that is train for many-to-many multilingual translation.
 
-The docker image of backend service can by running "docker build -t translation-svc ."
-After building, it can be start up by running "docker run -p 8000:8000 translation-svc"
+The docker image of backend service can be built by running "docker build -t translation-svc ."
+After building, it can be started up by running "docker run -p 8000:8000 translation-svc"
 
 The OpenAPI specification can be accessible at http://localhost:8000/docs.
