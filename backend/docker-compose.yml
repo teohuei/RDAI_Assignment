@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  webapp:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    environment:
+      - HOSTNAME
+      - SUPPORTED_LANG_CODE_LIST
+      - SUPPORTED_LANG_NAME_LIST
+    develop:
+      watch:
+        - path: . 
+          target: /app
+          action: sync
+    volumes:
+      - .:/app
+    user: appuser
