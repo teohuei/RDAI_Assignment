@@ -15,7 +15,7 @@ First function is the language detection of a given text. (Refer to sample scree
 Second function is to translate the text to English. (Refer to sample screenshot: Translate_Sample.png)
 ![Translate_Sample.png](https://github.com/teohuei/RDAI_Assignment/blob/main/Translate_Sample.PNG?raw=true)
 
-This demo web application can be started by running "python app.py" in the folder where app.py reside and access the application at http://127.0.0.1:7860.
+The docker image of gradio application can be built by running "docker build -t translation-app ." in frontend folder directory where the Dockerfile reside.
 
 ## Backend Service ##
 
@@ -25,10 +25,17 @@ It serves 4 different APIs.
 
 1) Status endpoint: Check if the service is running.
 2) Detect endpoint: Allow a post method to detect the language of a given text. It is using a fine-tuned version of xlm-roberta-base on the common language dataset.
-3) Supported Languages endpoint: It returns a list of languages that can be translated by the service. (Note: The list of support languages can be edited in the env file before building the docker image.)
+3) Supported Languages endpoint: It returns a list of languages that can be translated by the service.
 4) Translate endpoint: It will translate the given text and selected original language to English text. It is using facebook/m2m100_418M model that is train for many-to-many multilingual translation.
 
-The docker image of backend service can be built by running "docker build -t translation-svc ."
-After building, it can be started up by running "docker run -p 8000:8000 translation-svc"
+The docker image of backend service can be built by running "docker build -t translation-svc ." in backend folder directory where the Dockerfile reside.
 
-The OpenAPI specification can be accessible at http://localhost:8000/docs.
+## Starting the application and service ##
+
+Both application and backend service can be started by running "docker-compose up -d" in the root folder where docker-compose.yml and .env file reside.
+(Note: The list of support languages can be edited in the env file before starting the service. Ensure that the languages are supported by both the AI models.)
+
+Please be patient, and wait for the models to be loaded into the backend (approx. 5 to 10mins)
+
+The gradio application is accessible at http://localhost:7860.
+<br>The OpenAPI specification of the service is accessible at http://localhost:8000/docs.
