@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  webapp:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "7860:7860"
+    environment:
+      - SERVICE_IP
+      - STATUS_ENDPOINT
+      - SUPPORTEDLANG_ENDPOINT
+      - DETECT_ENDPOINT
+      - TRANSLATE_ENDPOINT
+    develop:
+      watch:
+        - path: . 
+          target: /app
+          action: sync
+    volumes:
+      - .:/app
+    user: appuser
