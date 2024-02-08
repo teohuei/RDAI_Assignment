@@ -58,6 +58,10 @@ def generate_lang_list():
     else:
         return []
 
+def regnerate_dropdown():
+    new_options = generate_lang_list()
+    return gr.Dropdown(choices=new_options)
+
 def translate_text(x, lang):
     if status_check():
         if len(x) < 6:
@@ -87,13 +91,15 @@ with gr.Blocks() as demo:
     with gr.Tab("Translate"):
         translate_text_input = gr.Textbox(label="Input")
         translate_lang_dropdown = gr.Dropdown(choices=lang_dropdown_list, label="Original Language")
+        regenerate_lang_list_button = gr.Button(value="Regenerate List")
         translate_text_output = gr.Textbox(label="English")
         translate_text_button = gr.Button("Translate To English")
 
     status_button.click(get_online_status, outputs=status_output)
     detect_text_button.click(detect_text, inputs=detect_text_input, outputs=[status_output, detect_text_output])
+    regenerate_lang_list_button.click(regnerate_dropdown, outputs=translate_lang_dropdown)
     translate_text_button.click(translate_text, inputs=[translate_text_input,translate_lang_dropdown], outputs=[status_output, translate_text_output])
     detect_text_output.change(copy_text, inputs=[detect_text_input, detect_text_output], outputs=translate_text_input)
 
 if __name__ == "__main__":
-    demo.launch()
+    demo.launch(server_name="0.0.0.0", server_port=7860)
