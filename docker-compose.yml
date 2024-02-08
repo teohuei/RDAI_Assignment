@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  translation-svc:
+    image: translation-svc:latest
+    ports:
+      - "8000:8000"
+    environment:
+      - HOSTNAME
+      - SUPPORTED_LANG_CODE_LIST
+      - SUPPORTED_LANG_NAME_LIST
+    user: appuser
+    networks:
+      - app_network
+
+  translation-app:
+    image: translation-app:latest
+    ports:
+      - "7860:7860"
+    environment:
+      - SERVICE_IP
+      - STATUS_ENDPOINT
+      - SUPPORTEDLANG_ENDPOINT
+      - DETECT_ENDPOINT
+      - TRANSLATE_ENDPOINT
+    user: appuser
+    networks:
+      - app_network
+
+networks:
+  app_network:
+    driver: bridge
